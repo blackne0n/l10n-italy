@@ -160,4 +160,17 @@
             </xpath>
         </field>
     </record>
+
+    <record id="account_invoice_line_list_l10n_it_edi_inherit_view" model="ir.ui.view">
+        <field name="name">account.move.line.list.l10n.it.edi.inherit.view</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_ids']" position="after">
+                <field name="l10n_it_edi_admin_ref" optional="hide" 
+                       invisible="parent.country_code != 'IT'" 
+                       column_invisible="parent.country_code != 'IT'"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
