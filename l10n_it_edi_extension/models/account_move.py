@@ -262,6 +262,8 @@ class AccountMoveInherit(models.Model):
                 {
                     "admin_ref": line.l10n_it_edi_admin_ref or None,
                     "altri_dati_gestionali_list": existing_list + other_data_list,
+                    "period_start_date": line.deferred_start_date or None,
+                    "period_end_date": line.deferred_end_date or None,
                 }
             )
         return res
