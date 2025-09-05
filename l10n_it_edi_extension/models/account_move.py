@@ -586,6 +586,14 @@ class AccountMoveInherit(models.Model):
             # Admin. ref.
             if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
                 move_line.l10n_it_edi_admin_ref = admin_ref
+            # Deferred dates
+            period_start = get_date(element, ".//DataInizioPeriodo")
+            period_end = get_date(element, ".//DataFinePeriodo")
+            if period_start and period_end:
+                move_line.write({
+                    'deferred_start_date': period_start,
+                    'deferred_end_date': period_end,
+                })
 
             vals = {
                 "line_number": int(get_text(element, ".//NumeroLinea")),
