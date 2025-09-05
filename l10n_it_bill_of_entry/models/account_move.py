@@ -199,6 +199,26 @@ class AccountMove(models.Model):
                     line_vals["product_id"] = boe_line.product_id.id
                 move_lines.append((0, 0, line_vals))
         move_vals["line_ids"] = move_lines
+        
+        debit_total = sum(line[2]["debit"] for line in move_vals["line_ids"])
+        credit_total = sum(line[2]["credit"] for line in move_vals["line_ids"])
+        balance_difference = round(debit_total - credit_total, 2)
+
+        if abs(balance_difference) > 0.01:
+            default_account = self.company_id.bill_of_entry_journal_id.default_account_id
+            if not default_account:
+                raise UserError(
+                    self.env._("The bill of entry journal doesn't have a default account configured")
+                )
+            
+            adjustment_line_vals = {
+                "name": self.env._("Customs expenses rounding"),
+                "account_id": default_account.id,
+                "debit": abs(balance_difference) if balance_difference < 0 else 0.0,
+                "credit": abs(balance_difference) if balance_difference > 0 else 0.0,
+            }
+            move_vals["line_ids"].append((0, 0, adjustment_line_vals))
+            
         return move_vals
 
     def _reconcile_bill_of_entry_storno(self, move):
