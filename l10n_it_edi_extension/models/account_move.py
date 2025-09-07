@@ -258,12 +258,22 @@ class AccountMoveInherit(models.Model):
 
             # Get existing altri_dati_gestionali_list or initialize empty list
             existing_list = base_line["it_values"].get("altri_dati_gestionali_list", [])
+            partner = line.partner_id or self.partner_id
+            domain = [
+                ('product_tmpl_id', '=', line.product_id.product_tmpl_id.id),
+                ('partner_id', '=', partner.id),
+            ]
+            if line.product_id.product_variant_count > 1:
+                domain.append(('product_id', '=', line.product_id.id))
+            info = self.env['product.customerinfo'].search(domain, limit=1)
+            product_code = info.product_code or None
             base_line["it_values"].update(
                 {
                     "admin_ref": line.l10n_it_edi_admin_ref or None,
                     "altri_dati_gestionali_list": existing_list + other_data_list,
                     "period_start_date": line.deferred_start_date or None,
                     "period_end_date": line.deferred_end_date or None,
+                    "partner_product_ref": product_code,
                 }
             )
         return res
