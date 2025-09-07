@@ -4,6 +4,13 @@
         id="account_invoice_line_it_FatturaPA_inherit"
         inherit_id="l10n_it_edi.account_invoice_line_it_FatturaPA"
     >
+        <xpath expr="//DettaglioLinee/CodiceArticolo[1]" position="before">
+            <CodiceArticolo
+                t-if="it_values.get('partner_product_ref')">
+                <CodiceTipo>CLIENTE</CodiceTipo>
+                <CodiceValore t-out="it_values['partner_product_ref']"/>
+            </CodiceArticolo>
+        </xpath>
         <xpath expr="//DettaglioLinee/PrezzoUnitario" position="before">
             <DataInizioPeriodo
                 t-if="it_values.get('period_start_date')"
