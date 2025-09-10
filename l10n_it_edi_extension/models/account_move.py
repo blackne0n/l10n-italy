@@ -318,19 +318,19 @@ class AccountMoveInherit(models.Model):
                     "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
                         element_stabile_organizzazione, ".//Indirizzo"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_civico": get_date(
+                    "l10n_it_edi_stabile_organizzazione_civico": get_text(
                         element_stabile_organizzazione, ".//NumeroCivico"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_cap": get_date(
+                    "l10n_it_edi_stabile_organizzazione_cap": get_text(
                         element_stabile_organizzazione, ".//CAP"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_comune": get_date(
+                    "l10n_it_edi_stabile_organizzazione_comune": get_text(
                         element_stabile_organizzazione, ".//Comune"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_provincia": get_date(
+                    "l10n_it_edi_stabile_organizzazione_provincia": get_text(
                         element_stabile_organizzazione, ".//Provincia"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_nazione": get_date(
+                    "l10n_it_edi_stabile_organizzazione_nazione": get_text(
                         element_stabile_organizzazione, ".//Nazione"
                     ),
                 }
