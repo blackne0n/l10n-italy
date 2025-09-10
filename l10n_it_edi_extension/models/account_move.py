@@ -609,28 +609,36 @@ class AccountMoveInherit(models.Model):
                     role=partner_role,
                 )
             )
+        partner_anagrafica_xpath = f"{partner_info_xpath}//DatiAnagrafici"
+        partner_sede_xpath = f"{partner_info_xpath}//Sede"
+        partner_vat_xpath = f"{partner_anagrafica_xpath}//IdFiscaleIVA"
+        partner_contact_xpath = f"{partner_info_xpath}//Contatti"
 
         partner_info.update(
             {
-                "city_xpath": f"{partner_info_xpath}//Comune",
-                "codice_fiscale_xpath": f"{partner_info_xpath}//CodiceFiscale",
-                "country_code_xpath": f"{partner_info_xpath}//Sede//Nazione",
-                "email_xpath": f"{partner_info_xpath}//Email",
-                "eori_code_xpath": f"{partner_info_xpath}//CodEORI",
-                "first_name_xpath": f"{partner_info_xpath}//Nome",
-                "last_name_xpath": f"{partner_info_xpath}//Cognome",
-                "name_xpath": f"{partner_info_xpath}//Denominazione",
-                "phone_xpath": f"{partner_info_xpath}//Telefono",
-                "register_code_xpath": f"{partner_info_xpath}//NumeroIscrizioneAlbo",
-                "register_regdate_xpath": f"{partner_info_xpath}//DataIscrizioneAlbo",
-                "register_state_xpath": f"{partner_info_xpath}//ProvinciaAlbo",
-                "register_xpath": f"{partner_info_xpath}//AlboProfessionale",
-                "state_xpath": f"{partner_info_xpath}//Provincia",
-                "street_number_xpath": f"{partner_info_xpath}//NumeroCivico",
-                "street_xpath": f"{partner_info_xpath}//Indirizzo",
-                "vat_xpath": f"{partner_info_xpath}//IdFiscaleIVA//IdCodice",
-                "vat_country_xpath": f"{partner_info_xpath}//IdFiscaleIVA//IdPaese",
-                "zip_xpath": f"{partner_info_xpath}//CAP",
+                "city_xpath": f"{partner_sede_xpath}//Comune",
+                "codice_fiscale_xpath": f"{partner_anagrafica_xpath}//CodiceFiscale",
+                "country_code_xpath": f"{partner_sede_xpath}//Nazione",
+                "email_xpath": f"{partner_contact_xpath}//Email",
+                "eori_code_xpath": f"{partner_anagrafica_xpath}//CodEORI",
+                "first_name_xpath": f"{partner_anagrafica_xpath}//Nome",
+                "last_name_xpath": f"{partner_anagrafica_xpath}//Cognome",
+                "name_xpath": f"{partner_anagrafica_xpath}//Denominazione",
+                "phone_xpath": f"{partner_contact_xpath}//Telefono",
+                "register_code_xpath": (
+                    f"{partner_anagrafica_xpath}//NumeroIscrizioneAlbo"
+                ),
+                "register_regdate_xpath": (
+                    f"{partner_anagrafica_xpath}//DataIscrizioneAlbo"
+                ),
+                "register_state_xpath": f"{partner_anagrafica_xpath}//ProvinciaAlbo",
+                "register_xpath": f"{partner_anagrafica_xpath}//AlboProfessionale",
+                "state_xpath": f"{partner_sede_xpath}//Provincia",
+                "street_number_xpath": f"{partner_sede_xpath}//NumeroCivico",
+                "street_xpath": f"{partner_sede_xpath}//Indirizzo",
+                "vat_xpath": f"{partner_vat_xpath}//IdCodice",
+                "vat_country_xpath": f"{partner_vat_xpath}//IdPaese",
+                "zip_xpath": f"{partner_sede_xpath}//CAP",
             }
         )
 
