@@ -614,7 +614,7 @@ class AccountMoveInherit(models.Model):
             {
                 "city_xpath": f"{partner_info_xpath}//Comune",
                 "codice_fiscale_xpath": f"{partner_info_xpath}//CodiceFiscale",
-                "country_code_xpath": f"{partner_info_xpath}//IdPaese",
+                "country_code_xpath": f"{partner_info_xpath}//Sede//Nazione",
                 "email_xpath": f"{partner_info_xpath}//Email",
                 "eori_code_xpath": f"{partner_info_xpath}//CodEORI",
                 "first_name_xpath": f"{partner_info_xpath}//Nome",
@@ -628,7 +628,8 @@ class AccountMoveInherit(models.Model):
                 "state_xpath": f"{partner_info_xpath}//Provincia",
                 "street_number_xpath": f"{partner_info_xpath}//NumeroCivico",
                 "street_xpath": f"{partner_info_xpath}//Indirizzo",
-                "vat_xpath": f"{partner_info_xpath}//IdCodice",
+                "vat_xpath": f"{partner_info_xpath}//IdFiscaleIVA//IdCodice",
+                "vat_country_xpath": f"{partner_info_xpath}//IdFiscaleIVA//IdPaese",
                 "zip_xpath": f"{partner_info_xpath}//CAP",
             }
         )
@@ -670,6 +671,12 @@ class AccountMoveInherit(models.Model):
                     vals[field_name] = value
 
             country_code = get_text(tree, partner_info["country_code_xpath"])
+            if (
+                vat_country := get_text(tree, partner_info.get("vat_country_xpath", ""))
+            ) != country_code:
+                vat_code = get_text(tree, partner_info["vat_xpath"])
+                vals["vat"] = f"{vat_country}{vat_code}" if vat_country else vat_code
+
             if country := self.env["res.country"].search(
                 [
                     ("code", "=", country_code),
