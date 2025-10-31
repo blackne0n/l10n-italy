@@ -150,6 +150,16 @@ class AccountMove(models.Model):
             "date": self.invoice_date,
         }
         move_lines = []
+
+        # Try to get analytic distribution from the forwarder invoice IVA line
+        iva_line = first(
+            self.invoice_line_ids.filtered(
+                lambda l: l.display_type == "product" and l.advance_customs_vat
+            )
+        )
+        iva_analytic_distribution = (
+            iva_line.analytic_distribution.copy() if getattr(iva_line, "analytic_distribution", False) else False
+        )
         for inv_line in self.invoice_line_ids.filtered(
             lambda line: line.display_type == "product"
         ):
@@ -161,6 +171,9 @@ class AccountMove(models.Model):
                     "credit": inv_line.price_subtotal,
                     "partner_id": inv_line.partner_id.id,
                 }
+                # Copy analytics from IVA line if available
+                if iva_analytic_distribution:
+                    line_vals["analytic_distribution"] = iva_analytic_distribution
                 if inv_line.product_id:
                     line_vals["product_id"] = inv_line.product_id.id
                 move_lines.append((0, 0, line_vals))
@@ -195,6 +208,9 @@ class AccountMove(models.Model):
                     "credit": boe_line.price_subtotal,
                     "partner_id": boe_line.partner_id.id,
                 }
+                # Copy analytics from IVA line if available
+                if iva_analytic_distribution:
+                    line_vals["analytic_distribution"] = iva_analytic_distribution
                 if boe_line.product_id:
                     line_vals["product_id"] = boe_line.product_id.id
                 move_lines.append((0, 0, line_vals))
@@ -217,8 +233,10 @@ class AccountMove(models.Model):
                 "debit": abs(balance_difference) if balance_difference < 0 else 0.0,
                 "credit": abs(balance_difference) if balance_difference > 0 else 0.0,
             }
+            if iva_analytic_distribution:
+                adjustment_line_vals["analytic_distribution"] = iva_analytic_distribution
             move_vals["line_ids"].append((0, 0, adjustment_line_vals))
-            
+
         return move_vals
 
     def _reconcile_bill_of_entry_storno(self, move):
