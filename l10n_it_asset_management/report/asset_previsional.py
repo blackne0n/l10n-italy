@@ -549,9 +549,9 @@ class ReportAsset(models.TransientModel):
         if asset.supplier_ref:
             purchase_vals["partner_ref"] = asset.supplier_ref
         elif asset.purchase_move_id.payment_reference:
-            purchase_vals["partner_ref"] = asset.purchase_move_id.payment_reference
-        elif asset.purchase_move_id.ref:
             purchase_vals["partner_ref"] = asset.purchase_move_id.ref
+        elif asset.purchase_move_id.ref:
+            purchase_vals["partner_ref"] = asset.purchase_move_id.payment_reference
         else:
             purchase_vals["partner_ref"] = "/"
 
