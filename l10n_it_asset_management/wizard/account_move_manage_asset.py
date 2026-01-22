@@ -394,7 +394,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             "purchase_date": self.purchase_date,
             "purchase_move_id": move.id,
             "supplier_id": supplier.id,
-            "supplier_ref": move.payment_reference or move.ref or "",
+            "supplier_ref": move.ref or move.payment_reference or "",
             "used": self.used,
         }
 
