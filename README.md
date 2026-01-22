@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [l10n_it_intrastat](l10n_it_intrastat/) | 18.0.1.0.2 |  | Riclassificazione merci e servizi per dichiarazioni Intrastat
 [l10n_it_intrastat_statement](l10n_it_intrastat_statement/) | 18.0.1.0.0 |  | Dichiarazione Intrastat per l'Agenzia delle Dogane
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 18.0.1.0.0 |  | Opzioni NUTS specifiche per l'Italia
-[l10n_it_riba_oca](l10n_it_riba_oca/) | 18.0.1.1.0 |  | Ricevute bancarie
+[l10n_it_riba_oca](l10n_it_riba_oca/) | 18.0.1.2.0 |  | Ricevute bancarie
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 18.0.1.2.0 |  | ITA - Registri IVA
 [l10n_it_vat_settlement_communication](l10n_it_vat_settlement_communication/) | 18.0.1.0.1 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
 [l10n_it_vat_settlement_date](l10n_it_vat_settlement_date/) | 18.0.1.0.1 |  | Settlement date for VAT Statement
