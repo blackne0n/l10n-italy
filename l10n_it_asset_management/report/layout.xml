@@ -50,26 +50,17 @@
                     <span t-esc="' '" />
                 </div>
                 <div class="col-6 text-end custom_footer">
-                    <ul class="list-inline">
-                        <li>
-                            <t t-if="o.report_footer_year">
-                                <span t-esc="o.report_footer_year" />
-                            </t>
-                            <t t-else="">
-                                <span class="page" />
-                            </t>
-                        </li>
-                        <li>/</li>
-                        <li>
-                            <t t-if="o.report_footer_year">
-                                <span class="page" />
-                            </t>
-                            <t t-else="">
-                                <span class="topage" />
-                            </t>
-                        </li>
-                    </ul>
-                </div>
+                    <t t-if="o.report_footer_year">
+                        <span t-esc="o.report_footer_year" />
+                        /
+                        <span class="page" />
+                    </t>
+                    <t t-else="">
+                        <span class="page" />
+                        /
+                        <span class="topage" />
+                    </t>
+                </div>            
             </div>
         </div>
     </template>
