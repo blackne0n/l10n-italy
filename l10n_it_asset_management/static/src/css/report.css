@@ -75,7 +75,7 @@
     font-style: italic;
 }
 .account_title {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: bold;
 }
 .account_title.labels {
@@ -110,16 +110,16 @@
     font-family: Helvetica, Arial, serif;
 }
 .account_title {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 24px;
     margin: 0 0 8px 0;
 }
 
 h2 {
-    font-size: 13px;
+    font-size: 18px;
     margin: 10px 0 6px 0;
 }
