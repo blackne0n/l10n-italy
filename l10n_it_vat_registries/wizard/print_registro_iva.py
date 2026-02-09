@@ -82,8 +82,8 @@ class WizardRegistroIva(models.TransientModel):
 
     def _get_move_ids_domain(self):
         return [
-            ("date", ">=", self.from_date),
-            ("date", "<=", self.to_date),
+            ("l10n_it_vat_settlement_date", ">=", self.from_date),
+            ("l10n_it_vat_settlement_date", "<=", self.to_date),
             ("journal_id", "in", [j.id for j in self.journal_ids]),
             ("state", "=", "posted"),
         ]
