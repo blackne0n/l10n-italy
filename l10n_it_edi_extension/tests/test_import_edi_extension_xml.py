@@ -106,6 +106,14 @@ class TestFatturaPAXMLValidation(Common):
         self.assertEqual(move.partner_id.country_id.code, "IT")
         self.assertEqual(move.partner_id.vat, "02780790107")
         self.assertEqual(
+            move.l10n_it_edi_stabile_organizzazione_indirizzo, "VIA PROVA 12"
+        )
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_civico, "12")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_cap, "00100")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_comune, "ROMA")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_provincia, "RM")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_nazione, "IT")
+        self.assertEqual(
             move.l10n_it_edi_tax_representative_id.name, "Rappresentante fiscale"
         )
         self.assertTrue(move.l10n_edi_it_art73)
