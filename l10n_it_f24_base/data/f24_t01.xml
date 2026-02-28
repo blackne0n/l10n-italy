@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record model="l10n_it.f24.t1" id="3">
+        <field name="code">3</field>
+        <field name="name">3 - Per i comuni della provincia autonoma di BOLZANO</field>
+        <field
+            name="description"
+        >Per i comuni della provincia autonoma di BOLZANO</field>
+    </record>
+    <record model="l10n_it.f24.t1" id="7">
+        <field name="code">7</field>
+        <field name="name">7 - Per i comuni della regione FRIULI VENEZIA GUILIA</field>
+        <field
+            name="description"
+        >Per i comuni della regione FRIULI VENEZIA GUILIA</field>
+    </record>
+    <record model="l10n_it.f24.t1" id="18">
+        <field name="code">18</field>
+        <field name="name">18 - Per i comuni della provincia autonoma di TRENTO</field>
+        <field
+            name="description"
+        >Per i comuni della provincia autonoma di TRENTO</field>
+    </record>
+    <record model="l10n_it.f24.t1" id="20">
+        <field name="code">20</field>
+        <field name="name">20 - Per i comuni della regione VALLE D'AOSTA</field>
+        <field name="description">Per i comuni della regione VALLE D'AOSTA</field>
+    </record>
+    <record model="l10n_it.f24.t1" id="99">
+        <field name="code">99</field>
+        <field name="name">99 - Per i RESTANTI COMUNI</field>
+        <field name="description">Per i RESTANTI COMUNI</field>
+    </record>
+</odoo>
