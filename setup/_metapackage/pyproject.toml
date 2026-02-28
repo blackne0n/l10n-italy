@@ -30,6 +30,7 @@ dependencies = [
     "odoo-addon-l10n_it_vat_settlement_communication==18.0.*",
     "odoo-addon-l10n_it_vat_settlement_date==18.0.*",
     "odoo-addon-l10n_it_website_portal_fiscalcode==18.0.*",
+    "odoo-addon-l10n_it_f24_base==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
